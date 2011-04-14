@@ -136,14 +136,14 @@ class Redis
       "zscore"           => [ :first ],
       "[]"               => [ :first ],
       "[]="              => [ :first ]
-    }
+    } unless defined?(COMMANDS)
 
     # support previous versions of redis gem
     ALIASES = case
               when defined? Redis::Client::ALIASES  then Redis::Client::ALIASES
               when defined? Redis::ALIASES          then Redis::ALIASES
               else {}
-              end
+              end unless defined?(ALIASES)
 
     attr_accessor :namespace
 
